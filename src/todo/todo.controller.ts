@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, HttpStatus, HttpException } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
@@ -18,11 +18,15 @@ export class TodoController {
 
   @Get()
   findAll() {
-    return this.todoService.findAll();
+    const data = this.todoService.findAll();
+    if (!data) {
+      throw new HttpException('Not Found', HttpStatus.NOT_FOUND);
+    }
+    return data
   }
 
 
-  @Patch('updateTodoToDone/:id')
+  @Patch('updateTodo/:id')
   update(@Param('id') id: string, @Body() updateTodoDto: UpdateTodoDto) {
     return this.todoService.update(+id, updateTodoDto);
   }
