@@ -10,6 +10,14 @@ async function bootstrap(): Promise<void> {
     .setTitle('API Documentation')
     .setDescription('The API description')
     .setVersion('1.0')
+    .addBearerAuth({
+      type: 'apiKey',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+      name: 'Authorization',
+      in: 'header',
+      description: 'Value: <JWT>',
+    })
     .addTag('users')
     .addTag('todos')
     .build();

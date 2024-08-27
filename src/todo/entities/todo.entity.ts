@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Todo {
-    @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
@@ -10,4 +10,10 @@ export class Todo {
 
   @Column()
   isDone: boolean;
+
+  @Column({default: 0})
+  userId: number;
+
+  @Column({ type: 'timestamp', nullable: true })
+  date: string
 }
