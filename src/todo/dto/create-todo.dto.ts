@@ -6,4 +6,7 @@ export class CreateTodoDto {
 
     @ApiProperty({ example: 'false', description: '' })
     isDone: boolean
+
+    @ApiProperty({ example: '', description: '' })
+    date: string
 }
